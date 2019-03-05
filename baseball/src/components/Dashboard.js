@@ -11,13 +11,17 @@ class Dashboard extends React.Component {
 
   strike = e => {
     e.preventDefault();
+    let newValue = this.state.strikes + 1;
+    this.setState({ strikes: newValue });
   };
 
   render() {
     return (
       <>
         <Display strikes={this.state.strikes} balls={this.state.balls} />
-        <button onClick={this.strike}>Strike</button>
+        <button data-testid="strike-button" onClick={this.strike}>
+          Strike
+        </button>
         <button onClick={this.addEvent}>Ball</button>
         <button onClick={this.addEvent}>Foul</button>
         <button onClick={this.addEvent}>Hit</button>
