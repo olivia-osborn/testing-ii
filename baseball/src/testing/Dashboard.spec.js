@@ -22,9 +22,39 @@ describe("<Dashboard />", () => {
   });
 
   it("check that strikes increment", () => {
-    const { getByTestId } = render(<Dashboard />);
+    const { getByTestId, getByText } = render(<Dashboard />);
     const strikeButton = getByTestId("strike-button");
     fireEvent.click(strikeButton);
-    expect(getByText);
+    const text = getByText(/strikes: 1/i);
+    expect(text).toBeInTheDocument();
+  });
+
+  it("check that balls increment", () => {
+    const { getByTestId, getByText } = render(<Dashboard />);
+    const ballButton = getByTestId("ball-button");
+    fireEvent.click(ballButton);
+    const text = getByText(/balls: 1/i);
+    expect(text).toBeInTheDocument();
+  });
+
+  it("checks that strikes don't go above 2", () => {
+    const { getByTestId, getByText } = render(<Dashboard />);
+    const strikeButton = getByTestId("strike-button");
+    fireEvent.click(strikeButton);
+    fireEvent.click(strikeButton);
+    fireEvent.click(strikeButton);
+    const text = getByText(/strikes: 0/i);
+    expect(text).toBeInTheDocument();
+  });
+
+  it("checks that balls don't go above 3", () => {
+    const { getByTestId, getByText } = render(<Dashboard />);
+    const ballButton = getByTestId("ball-button");
+    fireEvent.click(ballButton);
+    fireEvent.click(ballButton);
+    fireEvent.click(ballButton);
+    fireEvent.click(ballButton);
+    const text = getByText(/balls: 0/i);
+    expect(text).toBeInTheDocument();
   });
 });

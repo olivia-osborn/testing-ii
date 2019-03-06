@@ -12,7 +12,7 @@ class Dashboard extends React.Component {
   strike = e => {
     e.preventDefault();
     let newValue = this.state.strikes + 1;
-    if (newValue > 3) {
+    if (newValue > 2) {
       newValue = 0;
     }
     this.setState({ strikes: newValue });
@@ -21,7 +21,7 @@ class Dashboard extends React.Component {
   ball = e => {
     e.preventDefault();
     let newValue = this.state.balls + 1;
-    if (newValue > 4) {
+    if (newValue > 3) {
       newValue = 0;
     }
     this.setState({ balls: newValue });
@@ -34,7 +34,9 @@ class Dashboard extends React.Component {
         <button data-testid="strike-button" onClick={this.strike}>
           Strike
         </button>
-        <button onClick={this.ball}>Ball</button>
+        <button data-testid="ball-button" onClick={this.ball}>
+          Ball
+        </button>
         <button onClick={this.addEvent}>Foul</button>
         <button onClick={this.addEvent}>Hit</button>
       </>
