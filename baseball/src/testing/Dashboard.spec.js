@@ -20,4 +20,11 @@ describe("<Dashboard />", () => {
     const balls = getByText(/balls: 0/i);
     expect(balls).toBeInTheDocument;
   });
+
+  it("check that strikes increment", () => {
+    const { getByTestId } = render(<Dashboard />);
+    const strikeButton = getByTestId("strike-button");
+    fireEvent.click(strikeButton);
+    expect(getByText);
+  });
 });
